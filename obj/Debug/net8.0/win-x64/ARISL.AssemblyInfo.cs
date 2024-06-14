@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ARISL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d7fceafefa2f3e27fbd4c9b1c9b8e74e143c5983")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f706b37cb95d539c7b307133229426733ac1efa3")]
 [assembly: System.Reflection.AssemblyProductAttribute("ARISL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ARISL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

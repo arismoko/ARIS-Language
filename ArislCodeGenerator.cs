@@ -4,7 +4,8 @@ using Antlr4.Runtime.Misc;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.ComponentModel;
-
+// i'm sorry to anybody who decides to try to read this code, it's a mess
+// will be refactoring this soon
 public class ArislCodeGenerator : ArislBaseVisitor<string>
 {
     private string currentConstructorName;
