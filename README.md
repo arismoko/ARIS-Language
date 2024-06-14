@@ -501,8 +501,12 @@ func main() {
 ARISL is still very much in its infancy. While it already offers a range of features and functionality, there are many areas where the language can be expanded and improved.
 
 ### Upcoming Features
+
 #### IntelliSense and Language Server
 One of the most exciting developments is the upcoming ARISL language server, which will provide C# style IntelliSense in Visual Studio Code. This will greatly enhance the coding experience by offering auto-completion, method signatures, and other helpful features. The first version (0.0.1) will be uploaded soon, making it easier for developers to write and debug ARISL code.
+
+#### Turning .ari Files into an Executable w/ a Single Command (Windows)
+We are currently working on a system that should be able to build projects into an executable with very minimal effort. This is only possible at the moment on windows.
 
 ### Encouraging Contributions and Feedback
 We welcome feedback and contributions from the community. Whether you encounter bugs or have suggestions for new features, your input is invaluable. By working together, we can continue to improve ARISL and make it a powerful tool for developers.
