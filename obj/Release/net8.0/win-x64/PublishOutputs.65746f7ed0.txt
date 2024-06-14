@@ -1,0 +1,4 @@
+C:\Users\ari\Desktop\C# Projects\ARISL\bin\Release\net8.0\win-x64\publish\ARISL.pdb
+C:\Users\ari\Desktop\C# Projects\ARISL\bin\Release\net8.0\win-x64\publish\raylib.dll
+C:\Users\ari\Desktop\C# Projects\ARISL\bin\Release\net8.0\win-x64\publish\e_sqlite3.dll
+C:\Users\ari\Desktop\C# Projects\ARISL\bin\Release\net8.0\win-x64\publish\ARISL.exe

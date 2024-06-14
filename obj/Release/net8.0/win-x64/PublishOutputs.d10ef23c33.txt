@@ -1,0 +1,2 @@
+C:\Users\ari\Documents\ARI\arisl-language-support\arislx64\ARISL.pdb
+C:\Users\ari\Documents\ARI\arisl-language-support\arislx64\ARISL.exe
