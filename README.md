@@ -396,8 +396,13 @@ birdY += (~int)<~birdSpeedY;
 ```
 This line casts `birdSpeedY` to an `int` before adding it to `birdY`.
 
-**Loop Conditions**:
-In ARISL, we use `!Raylib.WindowShouldClose()` to keep the game loop running until the window is closed.
+**Generic Types/Typed functions**
+You can use `~int,~int@` to specify a type for a function. To create c# style generic function you can do the same `~T1,T2@`
+```csharp
+public static ~void func ~T@(ref ~T lhs, ref ~T rhs)
+```
+See how we specified that it was a void function? That's only there to ease the anxiety some of you Csharp veterans are probably feeling right about now. You dont need to specify that it's void the interpreter will assume it is.
+
 
 **Complete Flappy Bird Game**:
 Here's the complete code for our Flappy Bird game in ARISL:
