@@ -103,7 +103,7 @@ If you want to specify a type, you can do so using the `~` symbol.
 ```
 
 ### Functions
-Functions in ARISL can be defined using the `func` keyword. If the return type is not specified, the function is compiled as `void`. Functions can also be asynchronous using the `async` keyword.
+Functions in ARISL can be defined using the `func` keyword. If the return type is not specified, the function is compiled as `dynamic`. This means you can use return statements as you please. Functions can also be asynchronous using the `async` keyword.
 
 **Examples**:
 ```csharp
@@ -111,7 +111,7 @@ func SayHello() {
     Console.WriteLine("Hello, World!");
 }
 
-async func FetchData() {
+private async func FetchData() {
     await Task.Delay(1000);
     Console.WriteLine("Data fetched!");
 }
@@ -401,7 +401,7 @@ You can use `~int,~int@` to specify a type for a function. To create c# style ge
 ```csharp
 public static ~void func ~T@(ref ~T lhs, ref ~T rhs)
 ```
-See how we specified that it was a void function? That's only there to ease the anxiety some of you Csharp veterans are probably feeling right about now. You dont need to specify that it's void the interpreter will assume it is.
+See how we specified that it was a void function? That's only there to ease the anxiety some of you Csharp veterans are probably feeling right about now. You dont need to specify that, but if it makes you feel better I understand.
 
 
 **Complete Flappy Bird Game**:
