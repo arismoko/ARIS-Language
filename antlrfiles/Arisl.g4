@@ -71,7 +71,7 @@ functionSignature: type? IDENTIFIER arguments? end+;
 block: '{' statement* '}';
 
 list: '|' expression '|';
-expressionStatement: visibility? modifier* expression end+;
+expressionStatement: visibility? expression end+;
 
 expression:
 	modifier* type? primary							# PrimaryExpression

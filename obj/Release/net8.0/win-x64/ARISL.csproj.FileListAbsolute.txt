@@ -349,3 +349,4 @@ C:\Users\ari\Desktop\C# Projects\ARISL\bin\Release\net8.0\win-x64\mscordaccore_a
 C:\Users\ari\Desktop\C# Projects\ARISL\bin\Release\net8.0\win-x64\mscordbi.dll
 C:\Users\ari\Desktop\C# Projects\ARISL\bin\Release\net8.0\win-x64\mscorrc.dll
 C:\Users\ari\Desktop\C# Projects\ARISL\bin\Release\net8.0\win-x64\msquic.dll
+C:\Users\ari\Desktop\C# Projects\ARISL\obj\Release\net8.0\win-x64\ARISL.sourcelink.json

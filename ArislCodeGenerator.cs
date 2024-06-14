@@ -61,7 +61,7 @@ public class ArislCodeGenerator : ArislBaseVisitor<string>
     {
         _sb = new StringBuilder();
         _indentLevel = 0;
-        _debug = false;
+        _debug = true;
         _sourceMap = new SourceMap();
         _currentGeneratedLine = 1;
         _currentGeneratedColumn = 0;
@@ -744,7 +744,7 @@ public class ArislCodeGenerator : ArislBaseVisitor<string>
         int originalColumn = context.Start.Column;
 
         //Console.WriteLine("// Parsing If Statement");
-        PushScope("if", "ifStatement");
+        PushScope("if", CurrentScope().Value);
 
         AppendIndented("if (", originalLine, originalColumn);
         Visit(context.expression(0));
@@ -782,7 +782,8 @@ public class ArislCodeGenerator : ArislBaseVisitor<string>
         int originalColumn = context.Start.Column;
 
         //Console.WriteLine("// Parsing While Statement");
-        PushScope("while", "whileStatement");
+        PushScope("while", CurrentScope().Value);
+
 
         AppendIndented("while (", originalLine, originalColumn);
         Visit(context.expression());
@@ -802,7 +803,7 @@ public class ArislCodeGenerator : ArislBaseVisitor<string>
         int originalColumn = context.Start.Column;
 
         //Console.WriteLine("// Parsing For Statement");
-        PushScope("for", "forStatement");
+        PushScope("for", CurrentScope().Value);
 
         AppendIndented("for (", originalLine, originalColumn);
         if (context.type() != null)
@@ -855,7 +856,7 @@ public class ArislCodeGenerator : ArislBaseVisitor<string>
         int originalColumn = context.Start.Column;
 
         //Console.WriteLine("// Parsing ForEach Statement");
-        PushScope("foreach", "foreachStatement");
+        PushScope("foreach", CurrentScope().Value);
 
         AppendIndented("foreach (", originalLine, originalColumn);
         if (context.type() != null)
@@ -886,7 +887,7 @@ public class ArislCodeGenerator : ArislBaseVisitor<string>
         int originalColumn = context.Start.Column;
 
         //Console.WriteLine("// Parsing Repeat-Until Statement");
-        PushScope("repeat-until", "repeatUntilStatement");
+        PushScope("repeat-until", CurrentScope().Value);
 
         AppendIndentedLine("do", originalLine, originalColumn);
 
@@ -1011,7 +1012,7 @@ public class ArislCodeGenerator : ArislBaseVisitor<string>
         int originalColumn = context.Start.Column;
 
         //Console.WriteLine("// Parsing Switch Statement");
-        PushScope("switch", "switchStatement");
+        PushScope("switch", CurrentScope().Value);
 
         AppendIndented("switch (", originalLine, originalColumn);
         Visit(context.expression());
@@ -1042,7 +1043,7 @@ public class ArislCodeGenerator : ArislBaseVisitor<string>
         int originalColumn = context.Start.Column;
 
         //Console.WriteLine("// Parsing Case Block");
-        PushScope("case", "caseBlock");
+        PushScope("case", CurrentScope().Value);
 
         AppendIndented("case ", originalLine, originalColumn);
         Visit(context.expression());
@@ -1066,7 +1067,7 @@ public class ArislCodeGenerator : ArislBaseVisitor<string>
         int originalColumn = context.Start.Column;
 
         //Console.WriteLine("// Parsing Default Block");
-        PushScope("default", "defaultBlock");
+        PushScope("default", CurrentScope().Value);
 
         AppendIndentedLine("default:", originalLine, originalColumn);
 
@@ -1088,7 +1089,7 @@ public class ArislCodeGenerator : ArislBaseVisitor<string>
         int originalColumn = context.Start.Column;
 
         //Console.WriteLine("// Parsing Try-Catch Statement");
-        PushScope("try-catch", "tryCatchStatement");
+        PushScope("try-catch", CurrentScope().Value);
 
         AppendIndentedLine("try", originalLine, originalColumn);
         _indentLevel++;
@@ -1292,7 +1293,7 @@ public class ArislCodeGenerator : ArislBaseVisitor<string>
         int originalColumn = context.Start.Column;
 
         var currentScope = CurrentScope();
-        //Console.WriteLine($"// Parsing Block. Is Dynamic? {isDynamic} current scope? {currentScope.Key}");
+        Console.WriteLine($"// Parsing Block. Is Dynamic? {isDynamic} current scope? {currentScope.Key}");
 
         AppendIndentedLine("{", originalLine, originalColumn);
         _indentLevel++;
@@ -1304,7 +1305,7 @@ public class ArislCodeGenerator : ArislBaseVisitor<string>
             VisitStatement(stmt);
         }
 
-        //Console.WriteLine($"// Finished Block statements. Is Dynamic? {isDynamic} current scope? {currentScope.Key}");
+        Console.WriteLine($"// Finished Block statements. Is Dynamic? {isDynamic} current scope? {currentScope.Key}");
 
         if (currentScope.Key == "function" && isDynamic && !containsReturnStatement)
         {
@@ -1327,7 +1328,7 @@ public class ArislCodeGenerator : ArislBaseVisitor<string>
 
         // Announcing parsing a list
         //Console.WriteLine("// Parsing list.");
-        PushScope("list", "list");
+        PushScope("list", CurrentScope().Value);
 
         Append("{", originalLine, originalColumn);
         if (context.expression() != null)
@@ -1344,6 +1345,7 @@ public class ArislCodeGenerator : ArislBaseVisitor<string>
         if (context == null) throw new ArgumentNullException(nameof(context));
         // Announcing parsing a Primary Expression
         //Console.WriteLine("// Parsing Primary Expression");
+
         string modifiers = "";
         if (context.modifier(0) != null)
         {
@@ -1364,6 +1366,54 @@ public class ArislCodeGenerator : ArislBaseVisitor<string>
             Append(Visit(context.type()), context.Start.Line, context.Start.Column);
             Append(" ", context.Start.Line, context.Start.Column);
         }
+        if (context.primary() != null && context.primary() is ArislParser.IdentifierPrimaryContext && !varTokenPlaced)
+        {
+            if (currentVar != null)
+            {
+                currentVar.name = context.primary().GetText();
+                var currentScope = CurrentScope();
+                currentVar.scope = currentScope.Value;
+                currentVar.scopeIdentifier = currentScope.Value;
+                Console.WriteLine("VAR NAME: " + currentVar.name);
+                if (!string.IsNullOrEmpty(currentVar.name))
+                {
+                    // check if in global dictionary
+                    string globalKey = $"{currentVar.scopeIdentifier}_{currentVar.name}";
+                    if (!globalVariables.ContainsKey(globalKey))
+                    {
+                        var key = CurrentScope().Key;
+
+                        if (currentVar.shouldAssignVarType() && key != "list" && key != "constructor")
+                        {
+                            if (key != "program")
+                            {
+                                Append("var ", context.Start.Line, context.Start.Column);
+                            }
+                            else
+                            {
+                                // check if the variable is static
+                                if (currentVar.uniqueModifiers != null && !currentVar.uniqueModifiers.Contains("instantiated"))
+                                {
+                                    Append("", context.Start.Line, context.Start.Column);
+                                }
+                                else if (currentVar.uniqueModifiers == null)
+                                {
+                                    Append("static ", context.Start.Line, context.Start.Column);
+                                }
+                                Append("dynamic ", context.Start.Line, context.Start.Column);
+                            }
+                            globalVariables.Add(globalKey, currentVar);
+                            varTokenPlaced = true;
+                        }
+                        else
+                        {
+                            globalVariables.Add(globalKey, currentVar);
+                        }
+                    }
+                }
+            }
+
+        }
         else if (context.primary != null && context.primary() is ArislParser.ListPrimaryContext)
         {
             if (modifiers.Contains("tbl"))
@@ -1377,53 +1427,7 @@ public class ArislCodeGenerator : ArislBaseVisitor<string>
                 Append("new List<dynamic>", context.Start.Line, context.Start.Column);
             }
         }
-        if (context.primary() != null && context.primary() is ArislParser.IdentifierPrimaryContext && !varTokenPlaced)
-        {
-            if (currentVar != null)
-            {
-                currentVar.name = context.primary().GetText();
-                var currentScope = CurrentScope();
-                currentVar.scope = currentScope.Key;
-                currentVar.scopeIdentifier = currentScope.Value;
-                //Console.WriteLine("VAR NAME: " + currentVar.name);
-            }
-            if (currentVar != null && !string.IsNullOrEmpty(currentVar.name))
-            {
-                // check if in global dictionary
-                string globalKey = $"{currentVar.scope}_{currentVar.scopeIdentifier}_{currentVar.name}";
-                if (!globalVariables.ContainsKey(globalKey))
-                {
-                    var key = CurrentScope().Key;
 
-                    if (currentVar.shouldAssignVarType() && key != "list" && key != "constructor")
-                    {
-                        if (key == "function")
-                        {
-                            Append("var ", context.Start.Line, context.Start.Column);
-                        }
-                        else
-                        {
-                            // check if the variable is static
-                            if (currentVar.uniqueModifiers != null && !currentVar.uniqueModifiers.Contains("instantiated"))
-                            {
-                                Append("", context.Start.Line, context.Start.Column);
-                            }
-                            else if (currentVar.uniqueModifiers == null)
-                            {
-                                Append("static ", context.Start.Line, context.Start.Column);
-                            }
-                            Append("dynamic ", context.Start.Line, context.Start.Column);
-                        }
-                        globalVariables.Add(globalKey, currentVar);
-                        varTokenPlaced = true;
-                    }
-                    else
-                    {
-                        globalVariables.Add(globalKey, currentVar);
-                    }
-                }
-            }
-        }
 
         // check if context.primary is a list
         VisitPrimary(context.primary());
@@ -1447,19 +1451,6 @@ public class ArislCodeGenerator : ArislBaseVisitor<string>
         if (!string.IsNullOrEmpty(visibilityModifier))
         {
             Append($"{visibilityModifier} ", context.Start.Line, context.Start.Column);
-        }
-        if (context.modifier().Length > 0)
-        {
-            foreach (var modifier in context.modifier())
-            {
-                var text = Visit(modifier);
-                if (text.Contains("instantiated") && currentVar != null)
-                {
-                    currentVar.uniqueModifiers += "instantiated ";
-                    text = text.Replace("instantiated", "");
-                }
-                Append(text, context.Start.Line, context.Start.Column);
-            }
         }
         if (context.expression() != null)
         {
@@ -1538,6 +1529,10 @@ public class ArislCodeGenerator : ArislBaseVisitor<string>
         var leftExpr = context.expression(0);
         if (table && key) { Append("[", context.Start.Line, context.Start.Column); }
         Visit(leftExpr); // Access the first primary context
+        if (currentVar != null)
+        {
+            currentVar.beingAssignedValue = false;
+        }
         if (table && key) { Append("]", context.Start.Line, context.Start.Column); }
         if (currentVar != null) currentVar.binaryIterations++;
         for (int i = 0; i < context.binaryOp().Length; i++)
@@ -1555,6 +1550,7 @@ public class ArislCodeGenerator : ArislBaseVisitor<string>
             {
                 Append(" ", context.Start.Line, context.Start.Column);
             }
+
             Visit(context.expression(i + 1)); // Access the next primary context
         }
         return null;
