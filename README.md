@@ -535,7 +535,7 @@ There will be challenges and setbacks, but persistence is key. When things get c
 ---
 
 ## Acknowledgements
-Developing ARISL has been a collaborative and learning experience. I would like to extend my heartfelt thanks to:
+Developing ARISL has been a learning experience. I would like to extend my heartfelt thanks to:
 
 - **TJ**: For his invaluable help in testing and for keeping me motivated when the project became complex.
 - **ANTLR**: For providing the tools that made developing ARISL much easier.
