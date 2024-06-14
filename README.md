@@ -25,7 +25,6 @@ Welcome to **ARISL** (A Rapidly Interfacing Scripting Language), a versatile and
 3. [Importing and Using External Libraries](#importing-and-using-external-libraries)
     - [Creating Flappy Bird with Raylib](#creating-flappy-bird-with-raylib)
 4. [Future Developments and Encouragement](#future-developments-and-encouragement)
-5. [Acknowledgements](#acknowledgements)
 
 ---
 
@@ -531,14 +530,6 @@ Share your language with others and seek feedback. This can help you identify ar
 
 **Stay Persistent**:
 There will be challenges and setbacks, but persistence is key. When things get complex, take a step back, analyze the problem, and keep pushing forward.
-
----
-
-## Acknowledgements
-Developing ARISL has been a learning experience. I would like to extend my heartfelt thanks to:
-
-- **TJ**: For his invaluable help in testing and for keeping me motivated when the project became complex.
-- **ANTLR**: For providing the tools that made developing ARISL much easier.
 
 
 ---
