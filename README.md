@@ -1,9 +1,9 @@
 ---
 
-![ARISL Logo](https://github.com/arismoko/ARIS-Language/assets/19542195/82fe07c5-018c-4622-acf0-b5f112fcfdbf)
 
 
-# ARISL: A Rapidly Interfacing Scripting Language
+
+# ARISL: A Rapidly Interfacing Scripting Language ![ARISL Logo](https://github.com/arismoko/ARIS-Language/assets/19542195/82fe07c5-018c-4622-acf0-b5f112fcfdbf)
 
 Welcome to **ARISL** (A Rapidly Interfacing Scripting Language), a versatile and user-friendly scripting language designed to transcompile into C# code. ARISL aims to offer the flexibility and simplicity of dynamic scripting languages while harnessing the power and performance of C#.
 
@@ -522,10 +522,9 @@ There will be challenges and setbacks, but persistence is key. When things get c
 ## Acknowledgements
 Developing ARISL has been a collaborative and learning experience. I would like to extend my heartfelt thanks to:
 
+- **TJ**: For his invaluable help in testing and for keeping me motivated when the project became complex.
 - **ANTLR**: For providing the tools that made developing ARISL much easier.
-- **My boyfriend, TJ**: For his invaluable help
 
- in testing and for keeping me motivated when the project became complex.
 
 ---
 
