@@ -37,7 +37,7 @@ ARISL is designed to be intuitive, allowing developers to write code quickly and
 ### Key Features
 - **Dynamic Typing**: Variables in ARISL can be declared without specifying a type, making the language flexible and easy to use.
 - **C# Types**: Because the language transcompiles directly into C# we can explictly use C# types placing a ` ~ ` in front of the type. For example: `~int x = 1;`
-- **Lua-style Tables**: You can create and manipulate tables in a way similar to Lua, offering a familiar syntax for many developers.
+- **Lua-style Collections**: You can create and manipulate tables in a way similar to Lua, offering a familiar syntax for many developers.
 - **Interfacing with C# Libraries**: By using the `~` symbol, you can directly interact with C# types and libraries, integrating seamlessly with existing .NET code.
 
 ### ARISL's Interpreter and Transcompiler
