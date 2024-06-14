@@ -122,9 +122,9 @@ ARISL supports typical control structures such as if-else statements, while loop
 **If-Else Statements**:
 ```csharp
 x = 10;
-if (x > 5) {
+if x > 5 {
     Console.WriteLine("x is greater than 5");
-} else if (x == 5) {
+} else if x == 5 {
     Console.WriteLine("x is equal to 5");
 } else {
     Console.WriteLine("x is less than 5");
@@ -134,7 +134,7 @@ if (x > 5) {
 **While Loops**:
 ```csharp
 x = 0;
-while (x < 5) {
+while x < 5 {
     Console.WriteLine(x);
     x++;
 }
@@ -142,7 +142,7 @@ while (x < 5) {
 
 **For Loops**:
 ```csharp
-for (~int i = 0; i < 5; i++) {
+for ~int i = 0; i < 5; i++ {
     Console.WriteLine(i);
 }
 ```
@@ -151,7 +151,7 @@ for (~int i = 0; i < 5; i++) {
 ```csharp
 numbers = tbl|1, 2, 3, 4, 5|;
 
-foreach (~int num in numbers) {
+foreach ~int num in numbers{
     Console.WriteLine(num);
 }
 ```
