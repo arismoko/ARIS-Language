@@ -513,10 +513,7 @@ There is already a rudimentary import system in the language that allows you to 
 #### Optimizations and Refactoring
 The code works and the speed is rather remarkable when compared to my eariler attempts at ARISL, however I'd like to improve certain aspects of performance such as the time it takes to transpile code into c#. Additionaly, I'd like to improve the readability of our transpiling code and hopefully reduce the length.
 
-### Encouraging Contributions and Feedback
-We welcome feedback and contributions from the community. Whether you encounter bugs or have suggestions for new features, your input is invaluable. By working together, we can continue to improve ARISL and make it a powerful tool for developers.
-
-### Encouragement for Aspiring Language Creators
+### Aspiring Language Creators
 Creating a new programming language is a challenging but incredibly rewarding endeavor. If you're passionate about programming and have ideas for a language, I encourage you to try building it. Here are a few tips to get you started:
 
 **Start Small**:
