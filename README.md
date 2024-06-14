@@ -1,6 +1,6 @@
 ---
 
-![ARISL Logo](https://via.placeholder.com/150)
+![ARISL Logo][(https://via.placeholder.com/150)](https://github.com/arismoko/ARIS-Language/blob/main/ARISL.png?raw=true)
 
 # ARISL: A Rapidly Interfacing Scripting Language
 
