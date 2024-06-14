@@ -55,7 +55,7 @@ ARISL.exe
 **Example REPL Session**:
 ```csharp
 ARISL> x = 5
-ARISL> print(x)
+ARISL> Console.WriteLine(x);
 5
 ```
 
