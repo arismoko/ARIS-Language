@@ -32,7 +32,7 @@ Welcome to **ARISL** (A Rapidly Interfacing Scripting Language), a versatile and
 ## Introduction to ARISL
 
 ### Overview of ARISL
-ARISL is designed to be intuitive, allowing developers to write code quickly and efficiently. It supports a wide range of features, including dynamic variable declarations, async functions, and class definitions. With ARISL, you can leverage the vast ecosystem of C# libraries and tools, making it a powerful choice for both small scripts and large applications.
+ARISL is designed to be intuitive, allowing developers to write code quickly and efficiently. It supports a wide range of features, including dynamic variable declarations, C# structs, interfaces, records, class definitions, etc. With ARISL, you can leverage the vast ecosystem of C# libraries and tools, making it a powerful choice for both small scripts and large applications.
 
 ### Key Features
 - **Dynamic Typing**: Variables in ARISL can be declared without specifying a type, making the language flexible and easy to use.
