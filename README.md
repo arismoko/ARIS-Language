@@ -510,30 +510,3 @@ We are currently working on a system that should be able to build projects into 
 #### Improving the Import/Module System
 There is already a rudimentary import system in the language that allows you to seperate your projects into several smaller .ari files, however its kinda hacky and will be replaced with a better solution. You can currently import a file that is in the same folder as an active .ari script by including import(filename.ari) at the top of the active script. It should also work if you do import(filepath.ari).
 
-#### Optimizations and Refactoring
-The code works and the speed is rather remarkable when compared to my eariler attempts at ARISL, however I'd like to improve certain aspects of performance such as the time it takes to transpile code into c#. Additionaly, I'd like to improve the readability of our transpiling code and hopefully reduce the length.
-
-### Aspiring Language Creators
-Creating a new programming language is a challenging but incredibly rewarding endeavor. If you're passionate about programming and have ideas for a language, I encourage you to try building it. Here are a few tips to get you started:
-
-**Start Small**:
-Begin with a simple language specification and gradually add features. It's easier to manage a small, functional language and expand it over time than to start with an overly complex design.
-
-**Use Existing Tools**:
-Tools like ANTLR (Another Tool for Language Recognition) can simplify the process of creating parsers and interpreters. ARISL started with the intention of transcompiling into Lua code, but thanks to ANTLR, it was easy to pivot to transcompiling into C# when needed.
-
-**Seek Feedback**:
-Share your language with others and seek feedback. This can help you identify areas for improvement and new features that you might not have considered.
-
-**Stay Persistent**:
-There will be challenges and setbacks, but persistence is key. When things get complex, take a step back, analyze the problem, and keep pushing forward.
-
-
----
-
-## Conclusion
-ARISL is at the beginning of its journey, and with your help and feedback, it has the potential to grow into a powerful and versatile language. Whether you're using ARISL or thinking about creating your own language, the key is to start, experiment, and enjoy the process.
-
-Happy coding!
-
----
